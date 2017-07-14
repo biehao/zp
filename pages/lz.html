@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				margin: 0;
+			}
+			.wrap{
+				width: 200px;
+				height: 300px;
+				margin: 30px auto;
+				position: relative;
+				perspective:1000px ;
+			}
+			.wrap div{
+				width: 200px;
+				height: 300px;
+				background: #ccc;
+				position: absolute;
+				left: 200px;
+				top: 0;
+				transform: rotateY(60deg);
+				transform-origin: left;
+				transform-style: preserve-3d;
+			}
+			.wrap .firstDiv{
+				left: 0;
+				transform: rotateY(0);
+				transition: 3s linear;
+				transform-origin: center center -173px;  
+			}
+			.wrap:hover .firstDiv{
+				transform: rotateY(-360deg);
+			}
+			p{
+				margin: 0;
+				border: 2px solid #000;
+				font: 40px/296px "微软雅黑";
+				text-align: center;
+			}
+			img{
+				vertical-align: top;
+				width: 196px;
+				height: 296px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="firstDiv">
+				<p><img src="img/1.jpg" alt="" /></p>
+				<div>
+					<p><img src="img/2.jpg" alt="" /></p>
+					<div>
+						<p><img src="img/3.jpg" alt="" /></p>
+						<div>
+							<p><img src="img/4.jpg" alt="" /></p>
+							<div>
+								<p><img src="img/5.jpg" alt="" /></p>
+								<div>
+									<p><img src="img/6.jpg" alt="" /></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			ul,p,input,body{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				width: 600px;
+				height: 700px;
+			}
+			li{
+				list-style: none;
+			}
+			.p1{
+				width: 400px;
+				padding: 10px;
+				background: #ccc;
+				position: relative;			
+			}
+			li{
+				width: 100px;
+				height: 50px;
+				margin: 2px;
+				font: 18px/50px "宋体";
+				text-align: center;
+				background: #ccc;
+			}
+			ul{
+				position: absolute;
+				left: 450px;
+				top: 0px;
+			}
+			.div1{
+				width: 340px;
+				height: 40px;
+				padding: 30px;
+				border: 5px solid #000;
+				position: relative;
+				display: none;
+			}
+			.div2{
+				width: 340px;
+				height: 20px;
+				border-bottom: 1px solid firebrick;
+			}
+			.p2{
+				width: 50px;
+				height: 20px;
+				text-align: center;
+				float: left;
+			}
+			input{
+				width: 120px;
+			}
+			.div3{
+				position: absolute;
+				left: 30px;
+				top: 55px;
+			}
+			.div4{
+				position: absolute;
+				left: 30px;
+				top: 55px;
+			}
+			.li1{
+				display: none;
+			}
+			.yellow{
+				background: yellow;
+			}
+			.red{
+				background: red;
+			}
+		</style>
+	</head>
+	<body>
+		<p id="aP" class="p1">
+			执着，说到底是对信念的不懈坚持，是一种一往无前的精神状态；而固执属于非理性的，固执虽然也是坚持，但却是“不撞南墙不回头”的偏执。因此，我们切忌将坚持与固执划等号。许多时候固执是非理性的想当然，而坚持则是经过理性分析之后做出的理性决断。现实中，我们既要做到不因他人的错误劝解，而随意放弃自己的目标，也不要因为对方的善意且正确的提醒或规劝而固执己见。人要执着，只有执着才能成就人生；人不能固执，一旦固执，人生也必受困扰。
+			<ul>
+				<li>展开</li>
+				<li class="li1">查找</li>
+				<li class="li1">替换</li>
+			</ul>
+			<div class="div1">
+				<div class="div2">
+					<p class="p2">查找</p>
+					<p class="p2">替换</p>
+				</div>
+				<div class="div3">
+					<input type="text"/>
+					<button>查找</button>
+				</div>
+				<div class="div4">
+					<input type="text"/>
+					<input type="text"/>
+					<button>替换</button>
+				</div>			
+			</div>
+		</p>			
+		<script src="jsLib.js"></script>
+		<script>
+			var oLi=$('li');
+			var on=true;
+			var oDiv=$('div');
+			var oP=$('p',oDiv[1]);
+			var aP=$('#aP');			
+			oLi[0].onclick=function(){
+				if(on){
+					for(var i=1;i<oLi.length;i++){
+						oLi[i].style.display="block";
+					};
+					on=false;
+				}else{
+					for(var i=1;i<oLi.length;i++){
+						oLi[i].style.display="none";
+					};
+					on=true;
+				};				
+			};
+			for(var i=1;i<oLi.length;i++){
+				oLi[i].index=i;
+				oLi[i].onmouseover=function(){
+					for(var i=1;i<oLi.length;i++){
+						oLi[i].style.background="";
+					};
+					oLi[this.index].style.background="red";
+				};			
+			};
+			oLi[1].onclick=function(){
+				for(var i=1;i<oLi.length;i++){
+					on=true;
+					oLi[i].style.display="none";
+				};
+				oDiv[0].style.display="block";
+				for(var i=0;i<oP.length;i++){
+					oP[i].style.background="";
+					oDiv[i+2].style.display="none";
+				};
+				oP[0].style.background="red";
+				oDiv[2].style.display="block";
+			};
+			oLi[2].onclick=function(){
+				for(var i=1;i<oLi.length;i++){
+					on=true;
+					oLi[i].style.display="none";
+				};
+				oDiv[0].style.display="block";
+				for(var i=0;i<oP.length;i++){
+					oP[i].style.background="";
+					oDiv[i+2].style.display="none";
+				};
+				oP[1].style.background="red";
+				oDiv[3].style.display="block";
+			};
+			for(var i=0;i<oP.length;i++){
+				oP[i].index=i;
+				oP[i].onclick=function(){
+					for(var i=0;i<oP.length;i++){
+						oP[i].style.background="";
+						oDiv[i+2].style.display="none";
+					};
+					oP[this.index].style.background="red";
+					oDiv[this.index+2].style.display="block";
+				};
+			};
+			
+			
+			var str=aP.innerHTML;
+			var btn=$('button');
+			var ipt=$('input');
+			//点击查找按钮
+			btn[0].onclick=function(){
+				if($('span')){
+					for(var i = 0; i < $('span').length ;i ++ ){
+					    $('span')[i].className = '';            
+					};
+				}
+				str=aP.innerHTML;
+				var serStr = ipt[0].value;
+				if(!ipt[0].value){
+					alert("请输入你要查找的内容")
+				}else if(str.indexOf(ipt[0].value)==-1){
+					alert("对不起，没有找到你要查找的：【"+ipt[0].value+"】")
+				}else{
+					aP.innerHTML = str.split(serStr).join('<span class="yellow">'+serStr+'</span>')
+				}
+			}
+			btn[1].onclick=function(){
+				if($('span')){
+					for(var i = 0; i < $('span').length ;i ++ ){
+					    $('span')[i].className = '';            
+					};
+				}
+				str=aP.innerHTML;
+				var serStr1 = ipt[1].value;
+				var serStr2 = ipt[2].value;
+				if(!ipt[1].value){
+					alert("请输入你要查找的内容")
+				}else if(str.indexOf(ipt[1].value)==-1){
+					alert("对不起，没有找到你要查找的：【"+ipt[1].value+"】")
+				}else{
+					aP.innerHTML = str.split(serStr1).join('<span class="red">'+serStr2+'</span>')
+				}	
+			}
+		</script>
+	</body>
+</html>

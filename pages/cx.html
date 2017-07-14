@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div div{
+				width: 48px;
+				height: 48px;
+				background: #ccc;
+				position: absolute;
+				top: 0;
+				left: 0;
+				border: 1px solid #fff;
+			}
+			img{
+				width: 500px;
+				height: 500px;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="tp">
+			<img src="img/2.jpg" alt="" />
+		</div>
+		<div id="div"></div>
+		<script>
+			var div = document.getElementById("div");
+			var div1= div.getElementsByTagName("div");
+			var a = "";
+			var L = 0;
+			var T = 0;
+			for( var i = 0;i<100;i++){
+				L = (i%10)*50;
+				T = ( Math.floor(i/10))*50;
+				a += '<div style="left:'+L+'px;top:'+T+'px"></div>'
+			};
+			    div.innerHTML=a;
+			    
+			for(var i = 0;i<100;i++){
+				div1[i].onmouseover=function(){
+					this.style.opacity=0;
+				}
+			}
+		</script>
+	</body>
+</html>

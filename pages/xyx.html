@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body,h2,p,ul{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			body{
+				background: #f1f1f1;
+				-webkit-user-select: none;
+			}
+			#wrap{
+				width: 1000px;
+				height: 600px;
+				margin: 10px auto;
+			}
+			#wrap h2{
+				width: 220px;
+				font: 26px/50px "微软雅黑";
+				margin: auto;
+			}
+			#wrap span{
+				display: block;
+				width: 560px;
+				margin: auto;
+				font: 16px/20px "微软雅黑";
+			}
+			#wrap input{
+				display:block;
+				margin:10px auto;
+			}
+			#box{
+				width: 800px;
+				height: 450px;
+				position: relative;
+				left: 0;
+				top: 0;
+				margin: 0 auto;
+			}
+			#wrap ul{
+				width: 800px;
+				height: 450px;
+				border: 1px solid #000;
+				overflow: hidden;
+				position: absolute;
+				left: 0px;
+				top: 0px;
+			}
+			#wrap li{
+				position: absolute;
+				left: 20px;
+				top: -30px;
+			}
+			#box div{
+				width: 110px;
+				height: 80px;
+				border: 1px solid #000;
+				background: #fff;
+				position: absolute;
+				left: -111px;
+				top: 0px;
+			}
+			#box p{
+				background: #ffffcc;
+				font: 16px/40px "微软雅黑";
+				color: #000;
+				padding-left: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<h2>你的鼠标有多快？</h2>
+			<span>游戏说明：点击“开始游戏”,随机掉下QQ表情,点中它,千万别让它掉下去！！</span>
+			<input type="button" id="btn" value="开始游戏"/>
+			<div id="box">
+				<div>
+					<p>得分：<em>0</em></p>
+					<p>失分：<em>0</em></p>
+				</div>
+				<ul>
+					<li><img src="img/1.png" alt="" /></li>
+				</ul>
+			</div>
+		</div> 
+		<script src="jsLib.js"></script>
+		<script>
+			var btn = $('#btn');
+			var oLi = $('li',$('#wrap'))[0];
+			var oImg = $('img',$('#wrap'))[0];
+			var box = $('#box');
+			var boxTop = parseInt(getStyle(box,'top'));
+			var aEm = $('em',$('#wrap'));
+			var n = 0 ;
+			var m = 0 ;
+			var onOff = true ;
+			var speed = null ;
+			btn.onclick = function (){
+				speed = 2 ;
+				this.value = '游戏中…';
+				this.disabled = 'disabled';
+				newLeft();
+				fall();
+				oLi.onmousedown = function (){
+					clearInterval(oLi.timer);
+					if(onOff){
+						n ++ ;
+						aEm[0].innerHTML = n ;
+						oImg.src = 'img/qq.png';
+						onOff = false ;
+						var oLiLeft = parseInt(getStyle(oLi,'left'));
+						shake(oLi,'left',oLiLeft,20,function(){
+							oLi.style.top ='-30px';
+							newLeft();
+							onOff = true ;
+							if(n<10){
+								speed ++ ;
+								fall();
+							}else{
+								alert('成功了');
+								n = 0 ;
+								aEm[0].innerHTML = n ;
+								btn.value = '开始游戏';
+								btn.disabled = '';
+								m = 0 ;
+								aEm[1].innerHTML = m ;
+							}
+						})
+					}
+				}
+			}
+			function fall(){
+				domove(oLi,'top',speed,450,function(){
+					oLi.style.top ='-30px';
+					newLeft();
+					m ++ ;
+					aEm[1].innerHTML = m ;
+					shake(box,'top',boxTop,14);
+					if(m<5){
+						fall();
+					}else{
+						clearInterval(box.shake);
+						alert('失败了');
+						m = 0 ;
+						aEm[1].innerHTML = m ;
+						btn.value = '开始游戏';
+						btn.disabled = '';
+						n = 0 ;
+						aEm[0].innerHTML = n ;
+					}
+				})
+			}
+			function newLeft(){
+				var random1 = Math.round(Math.random()*730+20);
+				var random2 = Math.round(Math.random()*10+1);
+				oLi.style.left = random1+'px';
+				oImg.src = 'img/'+random2+'.png';
+			}
+		</script>
+	</body>
+</html>

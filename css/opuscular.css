@@ -1,0 +1,165 @@
+#wrap{
+	width: 100%;
+	height: 60px;
+	background: #000000;
+}
+@keyframes hd{
+			0%{
+				background-position-x: 0;
+			}
+			100%{
+				background-position-x: 300px;
+			}
+		}
+		h1{
+			width: 300px;
+			height: 60px;
+			margin: auto;
+			font: 50px/50px "微软雅黑";
+			color: rgba(255,255,255,.1);
+			background:-webkit-linear-gradient(-30deg,rgba(0,0,0,1) 10%,rgba(255,255,255,1) 10%,rgba(255,255,255,1) 20%,rgba(0,0,0,1) 20%);
+			-webkit-background-clip:text;
+			animation: hd 2s linear infinite;
+		}
+#bg{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;	
+	background: url(../img/xk.jpg) no-repeat 0 0;
+	background-size: 100% 100%;
+}
+/*立方体*/
+@keyframes rotate{
+	0%{
+		transform: rotateX(0deg) rotateY(0deg) rotateZ(0);
+	}
+	100%{
+		transform: rotateX(-360deg) rotateY(-180deg) rotateZ(-45deg);
+	}
+}
+li{
+	list-style: none;
+}
+.wr{
+	width: 100px;
+	height: 100px;
+	/*padding: 100px;*/
+	margin: 30px auto;
+	position: absolute;
+	top: 90px;
+	left: 1185px;
+}
+ul{
+	width: 100px;
+	height: 100px;
+	position: relative;
+	transform-style: preserve-3d;
+	animation: rotate 3s linear infinite alternate;
+	transform-origin: center center -50px ; 
+}
+.wr:hover ul{
+	animation-play-state: paused;
+}
+li{
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	font: 40px/100px "微软雅黑";
+	text-align: center;
+}
+li:nth-of-type(1){
+	background: hotpink;
+	left: 0;
+	top: 0;
+}
+li:nth-of-type(2){
+	background: gold;
+	left: 0;
+	top: -100px;
+	transform: rotateX(90deg);
+	transform-origin: bottom;
+}
+li:nth-of-type(3){
+	background: darkblue;
+	left: 100px;
+	top: 0;
+	transform: rotateY(90deg);
+	transform-origin: left;
+}
+li:nth-of-type(4){
+	background: sandybrown;
+	left: 0;
+	top: 100px;
+	transform: rotateX(-90deg);
+	transform-origin: top;
+}
+li:nth-of-type(5){
+	background: blue;
+	left: -100px;
+	top: 0;
+	transform: rotateY(-90deg);
+	transform-origin: right;
+}
+li:nth-of-type(6){
+	background: aqua;
+	left: 0;
+	top: 0;
+	transform: translateZ(-100px) rotateY(180deg);
+}
+/*作品图标*/
+.adiv img{
+	width: 150px;
+	height: 150px;
+	border: 2px solid #000000;
+	border-radius: 50%;
+}
+.adiv span{
+	width: 150px;
+	height: 150px;
+	position: absolute;
+	top: 420px;
+	transition: 1s;
+}
+.ll{
+	left: 100px;
+}
+.xyx{
+	left: 300px;
+}
+.cx{
+	left: 500px;
+}
+.th{
+	left: 700px;
+}
+.wz{
+	left: 900px;
+}
+.fdj{
+	left: 1100px;
+}
+p:hover{
+	background: deepskyblue;
+}
+p{
+	width: 100px;
+	height: 30px;
+	border: 1px solid #000000; 
+	font: 16px/30px "微软雅黑";
+	text-align: center;
+	float: left;
+	margin-left: 100px;
+}
+.p1{
+	margin-left: 120px;
+}
+.an{
+	position: absolute;
+	top: 620px;
+	left: 0;
+}
+span:hover{
+	transform: scale(2);
+}

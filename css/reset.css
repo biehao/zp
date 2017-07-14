@@ -1,0 +1,27 @@
+img{
+	vertical-align: top;
+}
+a{
+	text-decoration: none;
+}
+body,h1,h2,h3,h4,h5,h6,p,ul,ol,dl,dd,input{
+	margin: 0px;
+}
+ul,ol,th,td,input,option,textarea{
+	padding: 0px;
+}
+li{
+	list-style: none;
+}
+input{
+	outline: none;
+}
+table{
+	border-collapse: collapse;
+}
+input,textarea,select{
+	outline: none;
+}
+em{
+	font-style:normal
+}
